@@ -1,4 +1,4 @@
-package util;
+package interfaces;
 
 public interface DisputeMembers {
     public boolean isDisputeMember();

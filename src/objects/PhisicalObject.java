@@ -1,4 +1,4 @@
-package Objects;
+package objects;
 import java.util.Objects;
 
 public abstract class PhisicalObject {

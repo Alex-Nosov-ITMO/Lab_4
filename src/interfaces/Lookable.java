@@ -1,7 +1,7 @@
-package util;
+package interfaces;
 
 import Heroes.Hero;
-import Objects.PhisicalObject;
+import objects.PhisicalObject;
 
 public interface Lookable {
     public void lookAtSomeone(Hero hero);

@@ -1,16 +1,14 @@
 package util;
 
-import Heroes.Hero;
-
 import java.util.Objects;
 
-public class Ground {
+public class Water {
+
     private String name;
 
-    public Ground(String name){
+    public Water(String name){
         this.setName(name);
     }
-
 
     public void setName(String name){
         this.name = name;
@@ -23,7 +21,7 @@ public class Ground {
 
     @Override
     public String toString() {
-        return this.getClass().getName() + "[" + " name==" + this.name + "]";
+        return this.getClass().getName() + "[" + "name==" + this.name + "]";
     }
 
     @Override
@@ -36,8 +34,7 @@ public class Ground {
         if (this == oth) return true;
         if (oth == null) return false;
         if (!oth.getClass().equals(this.getClass())) return false;
-        Ground other = (Ground) oth;
+        Water other = (Water) oth;
         return name.equals(other.name);
     }
 }
-

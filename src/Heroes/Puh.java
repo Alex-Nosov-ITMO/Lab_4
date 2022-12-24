@@ -1,10 +1,9 @@
 package Heroes;
 
 
-import Objects.PhisicalObject;
-import Objects.Wood;
-import util.Lookable;
-import util.Weather;
+import objects.PhisicalObject;
+import objects.Wood;
+import interfaces.Lookable;
 
 public class Puh extends Hero implements Lookable {
     public Puh(String name, boolean disputemember){

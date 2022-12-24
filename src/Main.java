@@ -4,7 +4,8 @@ import Heroes.Hero;
 import Heroes.Puh;
 import Locations.CloseLocationInForest;
 import Locations.OpenLocationInForest;
-import Objects.*;
+import exceptions.checkable.UndisputableException;
+import objects.*;
 import util.*;
 
 public class Main {
@@ -17,7 +18,7 @@ public class Main {
         Pot theBiggestPot = new Pot("Горшок с мёдом", Size.THEBIGEST);
         Wood wood = new Wood("Дерево", Size.MIDDLE);
         Wood.Branch branch = wood.new Branch("Самая высокая ветка", Size.THEFATTEST);
-        Wather wather = new Wather("Вода");
+        Water water = new Water("Вода");
         RescueOperation rescueOperation = new RescueOperation("Спасение горшков с мёдом", 5);
         Bottle bottle = new Bottle("Бутылка пяточка", Size.LITTLE);
         Paper paper = new Paper("Бумажка", Size.VERYSMALL);
@@ -37,12 +38,12 @@ public class Main {
 
         puh.cameUp(door);
         puh.lookOut();
-        branch.stickOut(wather);
+        branch.stickOut(water);
         puh.capture(theBiggestPot);
         puh.climbUp(branch, theBiggestPot);
         rescueOperation.savePots(puh);
         puh.sitOnBranch(branch);
-        bottle.swim(wather, puh);
+        bottle.swim(water, puh, 10);
         puh.say("Мед, мед!");
         puh.jumpedOff();
         puh.capture(bottle);
@@ -56,14 +57,19 @@ public class Main {
 
 
         Dispute dispute = new Dispute("Спор за место под солнцем");
-        Hero windispute = dispute.WhoWin(bear, puh);
-        if (windispute.equals(puh)) puh.ride(bear);
-        else if (windispute.equals(bear)) bear.ride(puh);
+        try {
+            Hero windispute = dispute.WhoWin(bear, cristoferRobin);
+            if (windispute.equals(puh)) puh.ride(bear);
+            else if (windispute.equals(bear)) bear.ride(puh);
+        } catch (UndisputableException e){
+            System.out.println(e.getMessage());
+        }
 
         theHighestLocationInForest.setWeather(Weather.RAINY);
         cristoferRobin.live(theHighestLocationInForest);
         cristoferRobin.sitHomeDuringTheRains();
-        cristoferRobin.morningCheck(stick, ground, wather, road, 3);
+        cristoferRobin.morningCheck(stick, ground, water, road, -6);
+        cristoferRobin.think("Мой дом стал настоящим островом");
 
 
 
@@ -79,6 +85,16 @@ public class Main {
         System.out.println("LowlandForest:" + lowlandForest);
         System.out.println("TheHighestLocationInForest:" + theHighestLocationInForest);
         System.out.println("Dispute:" + dispute);
-
+        System.out.println("Door:" + door);
+        System.out.println("TheBiggestPots:" + theBiggestPot);
+        System.out.println("Wood:" + wood);
+        System.out.println("Branch" + branch);
+        System.out.println("Water:" + water);
+        System.out.println("RescueOperation:" + rescueOperation);
+        System.out.println("Bottle:" + bottle);
+        System.out.println("Paper:" + paper);
+        System.out.println("Stick:" + stick);
+        System.out.println("Ground" + ground);
+        System.out.println("Road:" + road);
     }
 }

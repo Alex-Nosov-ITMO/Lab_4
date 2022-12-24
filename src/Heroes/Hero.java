@@ -3,13 +3,12 @@ package Heroes;
 
 import java.util.Objects;
 
-import Objects.PhisicalObject;
-import Locations.Locatable;
+import interfaces.Locatable;
 import Locations.Location;
-import util.DisputeMembers;
-import util.Lookable;
-import util.Ride;
-import util.Think;
+import exceptions.uncheckable.EmptyStringExceptions;
+import interfaces.DisputeMembers;
+import interfaces.Ride;
+import interfaces.Think;
 
 
 public abstract class Hero implements Locatable, DisputeMembers, Ride, Think {
@@ -89,7 +88,10 @@ public abstract class Hero implements Locatable, DisputeMembers, Ride, Think {
 
     @Override
     public void think(String text) {
-        System.out.println(this.getName() + " подумал: " + text);
+        if (text == ""){
+            throw new EmptyStringExceptions("Мысль пуста");
+        }
+        else System.out.println(this.getName() + " подумал: " + text);
     }
 
 

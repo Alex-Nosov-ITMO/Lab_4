@@ -1,10 +1,10 @@
 package Heroes;
 
 import Locations.OpenLocation;
-import Objects.Stick;
+import objects.Stick;
 import util.Ground;
 import util.Road;
-import util.Wather;
+import util.Water;
 import util.Weather;
 
 public class CristoferRobin extends Hero{
@@ -38,14 +38,20 @@ public class CristoferRobin extends Hero{
     }
 
 
-    public void morningCheck(Stick stick, Ground ground, Wather wather, Road road, int numberOfDay){
-        int cntDay = 2;
-        System.out.println(this.getName() + " воткнул" + stick.getName() + " в " + ground.getName());
-        while (cntDay < numberOfDay){
+    public void morningCheck(Stick stick, Ground ground, Water water, Road road, int numberOfDay){
+        int cntDay = 1;
+
+        if (numberOfDay < 1){
+            numberOfDay = 1;
+        }
+        else if (numberOfDay > 5){
+            numberOfDay = 5;
+        }
+        while (cntDay <= numberOfDay){
             cntDay++;
-            stick.hideUnderWater(wather);
-            road.shorten();
             System.out.println(this.getName() + " воткнул" + stick.getName() + " в " + ground.getName());
+            stick.hideUnderWater(water);
+            road.shorten();
         }
 
     }

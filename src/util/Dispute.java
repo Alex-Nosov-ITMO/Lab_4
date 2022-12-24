@@ -1,5 +1,6 @@
 package util;
 import Heroes.Hero;
+import exceptions.checkable.UndisputableException;
 
 import java.util.Objects;
 
@@ -17,33 +18,25 @@ public class Dispute {
         return this.name;
     }
 
-    public Hero WhoWin(Hero a, Hero b){
+    public Hero WhoWin(Hero a, Hero b) throws UndisputableException {
 
         final double CHANCE_TO_WIN = 0.5;
         boolean random;
-        if(random() > 1 - CHANCE_TO_WIN) {
-            random = true;
-        }
-        else random = false;
+        random = random() > 1 - CHANCE_TO_WIN;
 
-        if (!a.isDisputeMember() && !b.isDisputeMember()){
-            System.out.println("Спор не может состояться, так как ни один из участников не может участвовать в нем.");
-            return null;
+        if (a.isDisputeMember() && b.isDisputeMember()){
+            if (random){
+                System.out.println("Победитель спора: " + a.getName());
+                return a;
+            }
+            else {
+                System.out.println("Победитель спора: " + b.getName());
+                return b;
+            }
         }
-        else if (!a.isDisputeMember()){
-            System.out.println(a.getName() + " не может участвовать в споре");
-            return null;
+        else{
+            throw new UndisputableException("Спор не может состояться, так как один из участников не может участвовать в нем.");
         }
-        else if (!b.isDisputeMember()){
-            System.out.println(b.getName() + " не может участвовать в споре");
-            return null;
-        }
-        else if (random){
-            System.out.println("Победитель спора: " + a.getName());
-            return a;
-        }
-        System.out.println("Победитель спора: " + b.getName());
-        return b;
     }
 
     @Override

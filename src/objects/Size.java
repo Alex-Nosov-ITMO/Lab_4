@@ -1,4 +1,4 @@
-package Objects;
+package objects;
 
 public enum Size {
     LITTLE ("Маленький"),

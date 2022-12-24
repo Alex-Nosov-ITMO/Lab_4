@@ -3,6 +3,8 @@ package util;
 import Heroes.Hero;
 import Heroes.Puh;
 
+import java.util.Objects;
+
 public class RescueOperation {
 
     private String name;
@@ -29,4 +31,23 @@ public class RescueOperation {
         System.out.println("Все горшки спасены.");
     }
 
+    @Override
+    public String toString() {
+        return this.getClass().getName() + "[" + "name==" + this.name + ", numberOfPots==" + this.numberOfPots;
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, numberOfPots);
+    }
+
+    @Override
+    public boolean equals(Object oth) {
+        if (this == oth) return true;
+        if (oth == null) return false;
+        if (!oth.getClass().equals(this.getClass())) return false;
+        RescueOperation other = (RescueOperation) oth;
+        return name.equals(other.name) && numberOfPots == other.numberOfPots;
+    }
 }

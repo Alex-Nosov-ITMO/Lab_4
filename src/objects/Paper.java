@@ -1,4 +1,4 @@
-package Objects;
+package objects;
 
 public class Paper extends PhisicalObject{
     public Paper(String name, Size size){
