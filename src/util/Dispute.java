@@ -1,6 +1,6 @@
 package util;
 import Heroes.Hero;
-import exceptions.checkable.UndisputableException;
+import uncheckable.Undisputable;
 
 import java.util.Objects;
 
@@ -18,7 +18,7 @@ public class Dispute {
         return this.name;
     }
 
-    public Hero WhoWin(Hero a, Hero b) throws UndisputableException {
+    public Hero WhoWin(Hero a, Hero b) {
 
         final double CHANCE_TO_WIN = 0.5;
         boolean random;
@@ -35,7 +35,7 @@ public class Dispute {
             }
         }
         else{
-            throw new UndisputableException("Спор не может состояться, так как один из участников не может участвовать в нем.");
+            throw new Undisputable("Спор не может состояться, так как один из участников не может участвовать в нем.");
         }
     }
 

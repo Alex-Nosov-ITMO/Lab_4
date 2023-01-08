@@ -4,7 +4,7 @@ import Heroes.Hero;
 import Heroes.Puh;
 import Locations.CloseLocationInForest;
 import Locations.OpenLocationInForest;
-import exceptions.checkable.UndisputableException;
+import checkable.EmptyStringException;
 import objects.*;
 import util.*;
 
@@ -50,27 +50,33 @@ public class Main {
         puh.climbUp(branch, bottle);
         puh.pullOut(paper, bottle);
         puh.lookAtSomething(paper);
-        puh.think("Раз бутылка может плыть, то и горшок сможет.");
+        try {
+            puh.think("Раз бутылка может плыть, то и горшок сможет.");
+        }catch (EmptyStringException e){
+            System.out.println(e.getMessage());
+        }
+
         puh.throwSomething(theBiggestPot);
         puh.say("Я хочу плыть сверху");
         bear.say("Нет, я буду сверху");
 
 
         Dispute dispute = new Dispute("Спор за место под солнцем");
-        try {
-            Hero windispute = dispute.WhoWin(bear, cristoferRobin);
-            if (windispute.equals(puh)) puh.ride(bear);
-            else if (windispute.equals(bear)) bear.ride(puh);
-        } catch (UndisputableException e){
-            System.out.println(e.getMessage());
-        }
+
+        Hero windispute = dispute.WhoWin(bear, puh);
+        if (windispute.equals(puh)) puh.ride(bear);
+        else if (windispute.equals(bear)) bear.ride(puh);
+
 
         theHighestLocationInForest.setWeather(Weather.RAINY);
         cristoferRobin.live(theHighestLocationInForest);
         cristoferRobin.sitHomeDuringTheRains();
         cristoferRobin.morningCheck(stick, ground, water, road, -6);
-        cristoferRobin.think("Мой дом стал настоящим островом");
-
+        try {
+            cristoferRobin.think("Мой дом стал настоящим островом");
+        }catch (EmptyStringException e){
+            System.out.println(e.getMessage());
+        }
 
 
 

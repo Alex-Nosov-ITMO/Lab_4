@@ -3,9 +3,9 @@ package Heroes;
 
 import java.util.Objects;
 
+import checkable.EmptyStringException;
 import interfaces.Locatable;
 import Locations.Location;
-import exceptions.uncheckable.EmptyStringExceptions;
 import interfaces.DisputeMembers;
 import interfaces.Ride;
 import interfaces.Think;
@@ -87,11 +87,11 @@ public abstract class Hero implements Locatable, DisputeMembers, Ride, Think {
 
 
     @Override
-    public void think(String text) {
+    public void think(String text) throws EmptyStringException {
         if (text == ""){
-            throw new EmptyStringExceptions("Мысль пуста");
+            throw new EmptyStringException("Ошибка! Мысль пуста!");
         }
-        else System.out.println(this.getName() + " подумал: " + text);
+        System.out.println(this.getName() + " подумал: " + text);
     }
 
 

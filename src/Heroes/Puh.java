@@ -4,6 +4,7 @@ package Heroes;
 import objects.PhisicalObject;
 import objects.Wood;
 import interfaces.Lookable;
+import util.Dispute;
 
 public class Puh extends Hero implements Lookable {
     public Puh(String name, boolean disputemember){
